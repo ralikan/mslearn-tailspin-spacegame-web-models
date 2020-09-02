@@ -9,8 +9,8 @@ variables:
 steps:
 
 - task: PowerShell@2
+  displayName: 'Set package version environment variable'
   inputs:
-    displayName: 'Set package version environment variable'
     targetType: 'inline'
     script: |
       Write-Host "Current set version is $(packageVersion)"
