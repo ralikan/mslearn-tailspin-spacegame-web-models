@@ -4,7 +4,6 @@ pool:
 variables:
   buildConfiguration: 'Release'
   dotnetSdkVersion: '3.1.300'
-  packageVersion: '2.0.0'
 
 steps:
 - task: UseDotNet@2
@@ -31,8 +30,7 @@ steps:
     command: 'pack'
     projects: '**/*.csproj'
     arguments: '--no-build --configuration $(buildConfiguration)'
-    versioningScheme: byEnvVar
-    versionEnvVar: '$(packageVersion)'
+    versioningScheme: off
  
 - task: NuGetCommand@2
   displayName: 'Publish NuGet package'
