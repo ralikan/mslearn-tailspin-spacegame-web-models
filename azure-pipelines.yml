@@ -10,10 +10,14 @@ steps:
 
 - task: PowerShell@2
   inputs:
+    displayName: 'Set package version environment variable'
     targetType: 'inline'
     script: |
+      Write-Host "Current set version is $(packageVersion)"
       $packageVersion = $(packageVersion)
+      Write-Host "Version set to $packageVersion"
       Write-Host "##vso[task.setvariable variable=EnvPackageVersion;]$packageVersion"
+      Write-Host "Env var is $env:EnvPackageVersion"
 
 - task: UseDotNet@2
   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
