@@ -14,7 +14,17 @@ steps:
     targetType: 'inline'
     script: |
       Write-Host "Current set version is $(packageVersion)"
-      [Environment]::SetEnvironmentVariable("EnvPackageVersion", "$(packageVersion)", "User")
+      [Environment]::SetEnvironmentVariable("EnvPackageVersion", $(packageVersion))
+
+- task: PowerShell@2
+  displayName: 'Print environment variable'
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host "Env var: $env:EnvPackageVersion"
+      Write-Host "Env var: $(test)"
+  env: 
+    EnvPackageVersion: $(test)
 
 - task: UseDotNet@2
   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
