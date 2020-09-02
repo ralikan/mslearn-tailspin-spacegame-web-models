@@ -14,10 +14,7 @@ steps:
     targetType: 'inline'
     script: |
       Write-Host "Current set version is $(packageVersion)"
-      $packageVersionVar = $(packageVersion)
-      Write-Host "Version set to $packageVersion"
-      Write-Host "##vso[task.setvariable variable=EnvPackageVersion;]$packageVersionVar"
-      Write-Host "Env var is $env:EnvPackageVersion"
+      [Environment]::SetEnvironmentVariable("EnvPackageVersion", "$(packageVersion)", "User")
 
 - task: UseDotNet@2
   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
