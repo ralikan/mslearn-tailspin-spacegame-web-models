@@ -22,9 +22,6 @@ steps:
     targetType: 'inline'
     script: |
       Write-Host "Env var: $env:EnvPackageVersion"
-      Write-Host "Env var: $(test)"
-  env: 
-    EnvPackageVersion: $(test)
 
 - task: UseDotNet@2
   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
